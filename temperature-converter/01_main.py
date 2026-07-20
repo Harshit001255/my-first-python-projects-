@@ -28,35 +28,44 @@
 # Error handling (try/except for invalid input)
 # String formatting with decimals
 # f-strings
+choice = True
+while choice == True:
+    print("1. C to F\n2. C to K\n3. F to C\n4. K to C\n5. F to K\n6. Exit")
 
-print("1. C to F\n2. C to K\n3. F to C\n4. K to C\n5. F to K")
+    option = int(input("Enter your conversion option: "))
 
-option = int(input("Enter your conversion option: "))
-
-match option:
-    case 1:
-        print("Celsius to Fahrenheit:")
-        c = float(input("Enter the value in Celsius: "))
-        f = (c*(9/5)) + 32
-        print(f"The value in Fahrenheit = {f}")
-    case 2:
-        print("Celsius to Kelvin:")
-        c = float(input("Enter the value in Celsius: "))
-        k = c + 273.15
-        print(f"The value in Kelvin = {k}")
-    case 3:
-        print("Fahrenheit to Celsius:")
-        f = float(input("Enter the value in Fahrenheit: "))
-        c = (f - 32) * 5/9
-        print(f"The value in Celsius = {c}")
-    case 4:
-        print("Kelvin to Celsius:")
-        k = float(input("Enter the value in Kelvin: "))
-        c = k - 273.15
-        print(f"The value in Celsius = {c}")
-    case 5:
-        print("Fahrenheit to Kelvin:")
-        f = float(input("Enter the value in Fahrenheit: "))
-        k = ((f - 32) * 5/9) + 273.15
-        print(f"The value in Celsius = {k}")
+    match option:
+        case 1:
+            print("Celsius to Fahrenheit:")
+            c = float(input("Enter the value in Celsius: "))
+            f = (c*(9/5)) + 32
+            print(f"The value in Fahrenheit = {f:.2f}")
+            print(".....")
+        case 2:
+            print("Celsius to Kelvin:")
+            c = float(input("Enter the value in Celsius: "))
+            k = c + 273.15
+            print(f"The value in Kelvin = {k:.2f}")
+            print(".....")
+        case 3:
+            print("Fahrenheit to Celsius:")
+            f = float(input("Enter the value in Fahrenheit: "))
+            c = (f - 32) * 5/9
+            print(f"The value in Celsius = {c:.2f}")
+            print(".....")
+        case 4:
+            print("Kelvin to Celsius:")
+            k = float(input("Enter the value in Kelvin: "))
+            c = k - 273.15
+            print(f"The value in Celsius = {c:.2f}")
+            print(".....")
+        case 5:
+            print("Fahrenheit to Kelvin:")
+            f = float(input("Enter the value in Fahrenheit: "))
+            k = ((f - 32) * 5/9) + 273.15
+            print(f"The value in Celsius = {k:.2f}")
+            print(".....")
+        case 6:
+            print("Exiting the loop....")
+            choice = False
     
