@@ -32,7 +32,10 @@ choice = True
 while choice == True:
     print("1. C to F\n2. C to K\n3. F to C\n4. K to C\n5. F to K\n6. Exit")
 
-    option = int(input("Enter your conversion option: "))
+    try:
+        option = int(input("Enter your conversion option: "))
+    except ValueError as v:
+        print("Invalid choice! Please enter a number between 1 and 6.")
 
     match option:
         case 1:
@@ -63,7 +66,7 @@ while choice == True:
             print("Fahrenheit to Kelvin:")
             f = float(input("Enter the value in Fahrenheit: "))
             k = ((f - 32) * 5/9) + 273.15
-            print(f"The value in Celsius = {k:.2f}")
+            print(f"The value in kelvin = {k:.2f}")
             print(".....")
         case 6:
             print("Exiting the loop....")
