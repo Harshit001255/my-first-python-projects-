@@ -36,39 +36,61 @@ while choice == True:
         option = int(input("Enter your conversion option: "))
     except ValueError as v:
         print("Invalid choice! Please enter a number between 1 and 6.")
+        continue
 
     match option:
         case 1:
             print("Celsius to Fahrenheit:")
-            c = float(input("Enter the value in Celsius: "))
+            try:
+                c = float(input("Enter the value in Celsius: "))
+            except ValueError as v:
+                print("Error: Please enter a valid numerical temperature value")
+                continue
             f = (c*(9/5)) + 32
             print(f"The value in Fahrenheit = {f:.2f}")
             print(".....")
         case 2:
             print("Celsius to Kelvin:")
-            c = float(input("Enter the value in Celsius: "))
+            try:
+                c = float(input("Enter the value in Celsius: "))
+            except ValueError as v:
+                print("Error: Please enter a valid numerical temperature value")
+                continue
             k = c + 273.15
             print(f"The value in Kelvin = {k:.2f}")
             print(".....")
         case 3:
             print("Fahrenheit to Celsius:")
-            f = float(input("Enter the value in Fahrenheit: "))
+            try:
+                f = float(input("Enter the value in Fahrenheit: "))
+            except ValueError as v:
+                print("Error: Please enter a valid numerical temperature value")
+                continue
             c = (f - 32) * 5/9
             print(f"The value in Celsius = {c:.2f}")
             print(".....")
         case 4:
             print("Kelvin to Celsius:")
-            k = float(input("Enter the value in Kelvin: "))
+            try:
+                k = float(input("Enter the value in Kelvin: "))
+            except ValueError as v:
+                print("Error: Please enter a valid numerical temperature value")
+                continue
             c = k - 273.15
             print(f"The value in Celsius = {c:.2f}")
             print(".....")
         case 5:
             print("Fahrenheit to Kelvin:")
-            f = float(input("Enter the value in Fahrenheit: "))
+            try:
+                f = float(input("Enter the value in Fahrenheit: "))
+            except ValueError as v:
+                print("Error: Please enter a valid numerical temperature value")
+                continue
             k = ((f - 32) * 5/9) + 273.15
             print(f"The value in kelvin = {k:.2f}")
             print(".....")
         case 6:
             print("Exiting the loop....")
             choice = False
-    
+        case _:
+            print("Please select a valid option from 1 to 6.")
