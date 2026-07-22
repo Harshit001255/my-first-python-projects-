@@ -38,12 +38,15 @@ import time
 
 play1 = True
 play2 = True
+
 while play1 == True:
     print("Computer is Guessing...")
     time.sleep(1)
     ran = random.randint(1, 100)
     print(ran)
     print("Your's Turn Now...")
+
+    start = time.time()
 
     while play2 == True:
         user = int(input("Enter your guess: "))
@@ -55,6 +58,10 @@ while play1 == True:
         elif(user < ran):
             print("Low, no. is Greater!")
 
+    end = time.time()
+    duration = end - start
+    print(f"Time taken in guessing: {duration:.2f}")
+
     choice = input("Do you want to play another round(y/n): ")
     if (choice == "y"):
         play2 = True
@@ -62,8 +69,5 @@ while play1 == True:
     else:
         print("Exiting Loop...")
         play1 = False
-
-
-# guess_counter = 0
 
 
