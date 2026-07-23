@@ -38,6 +38,7 @@ import time
 
 play1 = True
 play2 = True
+guess_counter = 0
 
 while play1 == True:
     print("Computer is Guessing...")
@@ -57,15 +58,25 @@ while play1 == True:
             print("High, no. is Lesser!")
         elif(user < ran):
             print("Low, no. is Greater!")
+        guess_counter += 1
 
     end = time.time()
     duration = end - start
     print(f"Time taken in guessing: {duration:.2f}")
+    print(f"No. of Guesses: {guess_counter}")
+
+    Base_score = max(0, 1000 - (50 * guess_counter))
+    Time_bonus = max(0, 500 - (5 * duration))
+    Total_score = Base_score + Time_bonus
+    if guess_counter <= 5:
+        Total_score += 100
+
+    print(f"Your total score: {Total_score:.2f}")
 
     choice = input("Do you want to play another round(y/n): ")
     if (choice == "y"):
         play2 = True
-        continue
+        guess_counter = 0
     else:
         print("Exiting Loop...")
         play1 = False
