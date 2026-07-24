@@ -40,11 +40,15 @@ play1 = True
 play2 = True
 guess_counter = 0
 
+f = open("guessing-game/score.txt","r")
+best_score = f.read()
+f.close()
+
+
 while play1 == True:
     print("Computer is Guessing...")
     time.sleep(1)
     ran = random.randint(1, 100)
-    print(ran)
     print("Your's Turn Now...")
 
     start = time.time()
@@ -71,7 +75,17 @@ while play1 == True:
     if guess_counter <= 5:
         Total_score += 100
 
+    best_score = float(best_score)
+    if Total_score > best_score:
+        f = open("guessing-game/score.txt","w")
+        score_to_write = str(Total_score)
+        f.write(score_to_write)
+        f.close()
+        best_score = Total_score
+
     print(f"Your total score: {Total_score:.2f}")
+    print(f"""Best Score: {best_score}
+            Current score: {Total_score}""")
 
     choice = input("Do you want to play another round(y/n): ")
     if (choice == "y"):
@@ -80,5 +94,4 @@ while play1 == True:
     else:
         print("Exiting Loop...")
         play1 = False
-
 
