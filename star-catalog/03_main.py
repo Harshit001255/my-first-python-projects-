@@ -95,7 +95,11 @@ stars_data = [
 choice = True
 while choice == True:
     print("1. List all stars.\n2. Search by name\n3. Sort by brightness(magnitude)\n4. Sort by distance\n5. Find by constellation\n6. Exit")
-    option = int(input("Enter your choice(1-6): "))
+    try:
+        option = int(input("Enter your choice(1-6): "))
+    except ValueError:
+        print("ERROR! Invalid Input...")
+        continue
 
     match option:
         case 1:
@@ -145,3 +149,5 @@ while choice == True:
         case 6:
             choice = False
             print("Exiting Loop, Have a nice day!")
+        case _:
+            print("Choose between 1 to 6")
