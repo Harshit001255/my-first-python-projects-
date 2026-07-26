@@ -31,16 +31,16 @@
 
 stars_data = [
     {
-        "Name": "R136A1",
-        "Magnitude": -12.6,
-        "Distance": 160000,
-        "Constellation": "Dorado"
-    },
-    {
         "Name": "Sirius",
         "Magnitude": -1.46,
         "Distance": 8.6,
         "Constellation": "Canis Major" 
+    },
+    {
+        "Name": "Betelgeuse",
+        "Magnitude": 0.50,
+        "Distance": 640,
+        "Constellation": "Orion" 
     },
     {
         "Name": "Canopus",
@@ -49,22 +49,28 @@ stars_data = [
         "Constellation": "Carnia" 
     },
     {
-        "Name": "Arcturus",
-        "Magnitude": -0.04,
-        "Distance": 37,
-        "Constellation": "Bootes" 
-    },
-    {
         "Name": "Vega",
         "Magnitude": 0.03,
         "Distance": 25,
         "Constellation": "Lyra" 
     },
     {
+        "Name": "R136A1",
+        "Magnitude": -12.6,
+        "Distance": 160000,
+        "Constellation": "Dorado"
+    },
+    {
         "Name": "Capella",
         "Magnitude": 0.08,
         "Distance": 43,
         "Constellation": "Auriga" 
+    },
+    {
+        "Name": "Altair",
+        "Magnitude": 0.76,
+        "Distance": 17,
+        "Constellation": "Aquila" 
     },
     {
         "Name": "Rigel",
@@ -79,16 +85,10 @@ stars_data = [
         "Constellation": "Canis Minor" 
     },
     {
-        "Name": "Betelgeuse",
-        "Magnitude": 0.50,
-        "Distance": 640,
-        "Constellation": "Orion" 
-    },
-    {
-        "Name": "Altair",
-        "Magnitude": 0.76,
-        "Distance": 17,
-        "Constellation": "Aquila" 
+        "Name": "Arcturus",
+        "Magnitude": -0.04,
+        "Distance": 37,
+        "Constellation": "Bootes" 
     }
 ]
 
@@ -102,6 +102,7 @@ while choice == True:
             for star in stars_data:
                 print(star["Name"], star["Magnitude"], star["Distance"], star["Constellation"])
                 print("." * 10)
+            print("-*" * 20)
 
         case 2:
             star_name = input("Enter Star name: ")
@@ -114,16 +115,33 @@ while choice == True:
                     break
             if not found:
                 print("No Information...")
+            print("-*" * 20)
                 
-
         case 3:
-            pass
+            sorted_list = sorted(stars_data, key= lambda stars : stars["Magnitude"])
+            for star in sorted_list:
+                print(star["Name"], star["Magnitude"], star["Distance"], star["Constellation"])
+                print("." * 10)
+            print("-*" * 20)
 
         case 4:
-            pass
+            sorted_list = sorted(stars_data, key= lambda star : star["Distance"])
+            for star in sorted_list:
+                print(star["Name"], star["Magnitude"], star["Distance"], star["Constellation"])
+                print("." * 10)
+            print("-*"*20)
 
         case 5:
-            pass
-
+            const_name = input("Enter Constellation name: ")
+            found = False
+            for const in stars_data:
+                if const_name.lower() == const["Constellation"].lower():
+                    print(const["Name"], const["Magnitude"], const["Distance"], const["Constellation"])
+                    found = True
+                    print("." * 10)
+            if not found:
+                print("No Information...")
+            print("-*"*20)
         case 6:
             choice = False
+            print("Exiting Loop, Have a nice day!")
