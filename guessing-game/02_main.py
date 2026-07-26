@@ -40,9 +40,13 @@ play1 = True
 play2 = True
 guess_counter = 0
 
-f = open("guessing-game/score.txt","r")
-best_score = f.read()
-f.close()
+try:
+    f = open("guessing-game/score.txt","r")
+    best_score = f.read()
+    f.close()
+except FileNotFoundError:
+    best_score = "0"
+    print("Creating new file...")
 
 
 while play1 == True:
@@ -54,10 +58,17 @@ while play1 == True:
     start = time.time()
 
     while play2 == True:
-        user = int(input("Enter your guess: "))
+        try:
+            user = int(input("Enter your guess: "))
+        except ValueError:
+            print("ERROR! Invalid input...")
+            continue
         if(user == ran):
             print("Congrats you've guessed right!")
             play2 = False
+        elif(user < 1 or user > 100):
+                print("Out of Range! choose between 1 to 100...")
+                continue
         elif(user > ran):
             print("High, no. is Lesser!")
         elif(user < ran):
@@ -86,12 +97,16 @@ while play1 == True:
     print(f"Your total score: {Total_score:.2f}")
     print(f"""Best Score: {best_score}
             Current score: {Total_score}""")
-
-    choice = input("Do you want to play another round(y/n): ")
-    if (choice == "y"):
-        play2 = True
-        guess_counter = 0
-    else:
-        print("Exiting Loop...")
-        play1 = False
-
+    valid_choice = False
+    while valid_choice == False:
+        choice = input("Do you want to play another round(y/n): ")
+        if (choice.lower() == "y"):
+            play2 = True
+            guess_counter = 0
+            valid_choice = True
+        elif(choice.lower() == "n"):
+            print("Exiting Loop...")
+            play1 = False
+            valid_choice = True
+        else:
+            print("Enter 'y' or 'n'!")
