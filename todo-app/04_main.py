@@ -58,10 +58,9 @@ else:
                 tasks.append({"task": task, "status": "TODO"})
 
 
-print("1. View All Tasks\n2. Add Task\n3. Delete Task\n4. Mark Complete\n5. Clear Completed\n6. Statistics\n7. Save & Exit")
-
 choice = True
 while choice == True:
+    print("1. View All Tasks\n2. Add Task\n3. Delete Task\n4. Mark Complete\n5. Clear Completed\n6. Statistics\n7. Save & Exit")
     try:
         option = int(input("Enter your Choice: "))
     except ValueError:
@@ -76,8 +75,11 @@ while choice == True:
             will = True
             while will == True:
                 add_task = input("Enter tasks: ")
-                if add_task.lower() == "no":
+                if add_task == "":
+                    print("Enter valid task...")
+                elif add_task.lower() == "no":
                     will = False
+                    break
                 else:
                     tasks.append({"task": add_task, "status": "TODO"})
 
@@ -92,11 +94,15 @@ while choice == True:
 
         case 4:
             task_choice = int(input("Which task number to mark complete? "))
-            for index, task in enumerate(tasks):
-                if index == task_choice - 1:
-                    tasks[index]["status"] = "DONE"
-                    print("Done")
-                    break
+            
+            if task_choice < 1 or task_choice > len(tasks):
+                print("Error!")
+            else:
+                for index, task in enumerate(tasks):
+                    if index == task_choice - 1:
+                        tasks[index]["status"] = "DONE"
+                        print("Done")
+                        break
 
         case 5:
             new_tasks = []
@@ -132,13 +138,18 @@ while choice == True:
             print("█"*filled_blocks + "░"*empty_blocks )
 
         case 7:
-            f = open("todo-app/list.txt", "w")
-            for task in tasks:
-                f.write(task["task"] + "\n")
-            f.close()
+            try:
+                f = open("todo-app/list.txt", "w")
+                for task in tasks:
+                    f.write("[" + task["status"] + "]" + " " + task["task"] + "\n")
+                f.close()
 
-            choice = False
-            print("Exiting loop...")
+                choice = False
+                print("Saved Successfully...")
+                print("Exiting loop...")
+            except Exception:
+                print("Error: Could not save file")
+
 
         case _:
             print("Enter 1-4 only!")
