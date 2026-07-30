@@ -58,7 +58,7 @@ else:
                 tasks.append({"task": task, "status": "TODO"})
 
 
-print("1. View All Tasks\n2. Add Task\n3. Delete Task\n4. Save & Exit")
+print("1. View All Tasks\n2. Add Task\n3. Delete Task\n4. Mark Complete\n5. Clear Completed\n6. Statistics\n7. Save & Exit")
 
 choice = True
 while choice == True:
@@ -91,6 +91,47 @@ while choice == True:
                 print("Invalid task number...")
 
         case 4:
+            task_choice = int(input("Which task number to mark complete? "))
+            for index, task in enumerate(tasks):
+                if index == task_choice - 1:
+                    tasks[index]["status"] = "DONE"
+                    print("Done")
+                    break
+
+        case 5:
+            new_tasks = []
+            for task in tasks:
+                if task["status"] == "TODO":
+                    new_tasks.append(task)
+
+            tasks = new_tasks
+            print("Cleared all completed tasks!")
+
+        case 6:
+            total_count = 0
+            completed_count = 0
+
+            for task in tasks:
+                total_count += 1
+                if task["status"] == "DONE":
+                    completed_count += 1
+
+            remaining_count = total_count - completed_count
+            if total_count == 0:
+                percentage = 0
+            else:
+                percentage = (completed_count/total_count)*100
+            if total_count == 0:
+                filled_blocks = 0
+                empty_blocks = 10
+            else:
+                filled_blocks = int((completed_count/total_count)*10)
+                empty_blocks = int(10 - filled_blocks)
+
+            print(f"Total tasks: {total_count}\nCompleted: {completed_count}\nRemaining: {remaining_count}\nPercentage: {percentage:.2f}")
+            print("█"*filled_blocks + "░"*empty_blocks )
+
+        case 7:
             f = open("todo-app/list.txt", "w")
             for task in tasks:
                 f.write(task["task"] + "\n")
