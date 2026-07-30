@@ -55,7 +55,11 @@ else:
         tasks = []
         for task in list:
             if task != "":
-                tasks.append({"task": task, "status": "TODO"})
+                line = task
+                parts = line.split("] ")
+                status_part = parts[0].strip("[") #remove [ bracket from the start
+                task_part = parts[1]
+                tasks.append({"task": task_part, "status": status_part})
 
 
 choice = True
@@ -64,12 +68,12 @@ while choice == True:
     try:
         option = int(input("Enter your Choice: "))
     except ValueError:
-        print("Enter a number(1-4)!")
+        print("Enter a number(1-7)!")
         continue
     match option:
         case 1:
             for index, task in enumerate(tasks):
-                print(f"{index+1}.{task['task']}")
+                print(f"{index+1}.{"[" + task["status"] + "]" + " " + task["task"] }")
 
         case 2:
             will = True
@@ -86,23 +90,28 @@ while choice == True:
         case 3:
             try:
                 remove_task = int(input("Enter the no. of task to Delete: "))
-                tasks.pop(remove_task - 1)
+                if remove_task < 1 or remove_task > len(tasks):
+                    print("Invalid task number!")
+                else:
+                    tasks.pop(remove_task - 1)
             except ValueError:
                 print("Enter a number...")
             except IndexError:
                 print("Invalid task number...")
 
         case 4:
-            task_choice = int(input("Which task number to mark complete? "))
-            
-            if task_choice < 1 or task_choice > len(tasks):
-                print("Error!")
-            else:
-                for index, task in enumerate(tasks):
-                    if index == task_choice - 1:
-                        tasks[index]["status"] = "DONE"
-                        print("Done")
-                        break
+            try:
+                task_choice = int(input("Which task number to mark complete? "))
+                if task_choice < 1 or task_choice > len(tasks):
+                    print("Error!")
+                else:
+                    for index, task in enumerate(tasks):
+                        if index == task_choice - 1:
+                            tasks[index]["status"] = "DONE"
+                            print("Done")
+                            break
+            except ValueError:
+                print("Enter a number!")
 
         case 5:
             new_tasks = []
@@ -152,4 +161,4 @@ while choice == True:
 
 
         case _:
-            print("Enter 1-4 only!")
+            print("Enter 1-7 only!")
