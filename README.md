@@ -29,6 +29,12 @@ Explore the brightest stars, sort by distance/brightness, search by constellatio
 Manage your tasks with file persistence and progress tracking.
 [View Project](./todo-app/)
 
+### 🚀 NASA APOD (Astronomy Picture of the Day)
+Fetch and explore NASA's daily astronomy images via API. Save favorites, search by date, and discover random space photos.
+- Features: API integration, JSON parsing, file I/O, menu system
+- Skills: HTTP requests, data persistence, error handling
+[View Project](./NASA_APOD/)
+
 **Portfolio Projects**:
 - Intermediate level projects that show real-world skills
 - Each has detailed README, comments, and error handling
@@ -37,6 +43,7 @@ Manage your tasks with file persistence and progress tracking.
 - Python 3.8+
 - File I/O operations
 - Data structures (lists, dictionaries)
+- API requests (requests library)
 - Functions and error handling
 
 ## How to Use
